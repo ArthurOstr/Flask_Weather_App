@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Engine</title>
+    <style>
+        /* Basic styling to make it look clean */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #1ecc65;
+            display: flex;
+            justify-content: center;
+            padding-top: 50px;
+        }
+        .card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            text-align: center;
+            width: 350px;
+        }
+
+        /* The Search Bar Styling */
+        input[type="text"] {
+            padding: 10px;
+            width: 70%;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            outline: none;
+        }
+        button {
+            padding: 10px 15px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        button:hover { background-color: #0056b3; }
+
+        /* Weather Info Styling */
+        .weather-box { margin-top: 20px; }
+        .temp { font-size: 50px; color: #760909; font-weight: bold; margin: 10px 0; }
+        .desc { font-size: 18px; color: #666; text-transform: capitalize; }
+        .error { color: red; margin-top: 15px; }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <h1>Weather App 🌤️</h1>
+
+        <form method="POST">
+            <input type="text" name="city_name" placeholder="Enter city (e.g., Tokyo)" required>
+            <button type="submit">Search</button>
+        </form>
+
+        {% if error %}
+            <p class="error">{{ error }}</p>
+        {% endif %}
+
+        {% if city %}
+            <div class="weather-box">
+                <h2>{{ city }}</h2>
+                <div class="temp">{{ temp }}°C</div>
+                <p class="desc">{{ description }}</p>
+            </div>
+        {% endif %}
+    </div>
+
+</body>
+</html>
